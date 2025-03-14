@@ -1,0 +1,42 @@
+﻿<table style="width:100%">
+    <thead>
+        <tr>
+            <th class="ToDo-Status">
+                Status
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Due date
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr class="ToDo-tr">
+                <td class="ToDo-Status">@(obj.IsCompleted ? "✔" : "")</td>
+                <td>@obj.Name</td>
+                <td>@obj.Description</td>
+                <td>@obj.DueDate.ToString("MMMM dd, yyyy")</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-page="Edit" asp-route-id="@obj.Id" class="ToDo-btn-secondary-blue">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@obj.Id" class="ToDo-btn-secondary-red">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
