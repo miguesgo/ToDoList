@@ -3,6 +3,11 @@
     display: inline-block; /* Ensures proper layout */
 }
 
+.ToDo-body-background {
+    background-color: rgb(17,17,17);
+    color: white;
+}
+
 .task-banner {
     width: 100%; /* Make it full width */
     height: 200px; /* Adjust height */
@@ -21,7 +26,7 @@
     background-color: rgb(32,32,32);
     color: white;
     font-family: "Montserrat", sans-serif;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0px 0px 15px 15px;
 }
 
 .ToDo-tr:hover {
