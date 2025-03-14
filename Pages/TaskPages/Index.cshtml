@@ -1,43 +1,63 @@
 ﻿@page
 @model ToDoList.Pages.TaskPages.IndexModel
 
-<div class="container p-3">
+<div class="task-banner">
+    <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800" alt="Banner" />
+</div>
+
+<div class="container p-3 ToDo-form">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Tasks List</h2>
+            <h2>Notes</h2>
+            <h5>Fecha</h5>
         </div>
         <div class="col-6 text-end">
-            Boton
+            <a asp-page="create" class="ToDo-btn-primary">
+                <i class="bi bi-plus-lg"></i> &nbsp; Create a new Task
+            </a>
         </div>
     </div>
 
     <br /><br />
 
-    <table class="table table-bordered table-striped" style="width:100%">
+    <table style="width:100%">
         <thead>
             <tr>
+                <th class="ToDo-Status">
+                    Status
+                </th>
                 <th>
-                    Task Name
+                    Name
                 </th>
                 <th>
                     Description
                 </th>
                 <th>
-                    Status
+                    Due date
                 </th>
                 <th>
-                    Due date
+                    Actions
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach(var obj in Model.ToDoTasks)
             {
-                <tr>
+                <tr class="ToDo-tr">
+                    <td class="ToDo-Status">@(obj.IsCompleted ? "✔" : "")</td>
                     <td>@obj.Name</td>
                     <td>@obj.Description</td>
-                    <td>@(obj.IsCompleted == 1 ? "✔" : "")</td>
-                    <td>@obj.DueDate</td>
+                    <td>@obj.DueDate.ToString("MMMM dd, yyyy")</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-page="Edit" asp-route-id="@obj.Id" class="ToDo-btn-secondary-blue">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@obj.Id" class="ToDo-btn-secondary-red">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>

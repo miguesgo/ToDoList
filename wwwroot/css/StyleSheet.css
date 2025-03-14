@@ -1,0 +1,119 @@
+﻿button {
+    all: unset; /* Resets all default button styles */
+    display: inline-block; /* Ensures proper layout */
+}
+
+.task-banner {
+    width: 100%; /* Make it full width */
+    height: 200px; /* Adjust height */
+    overflow: hidden; /* Crop image if necessary */
+    border-radius: 15px 15px 0 0;
+}
+
+.task-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the space */
+}
+
+.ToDo-form {
+    width: 100%; /* Make it full width */
+    background-color: rgb(32,32,32);
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 0 0 15px 15px;
+}
+
+.ToDo-tr:hover {
+    background-color: rgb(82,82,82);
+}
+
+.ToDo-Status {
+    text-align:center;
+}
+
+.ToDo-btn-primary {
+    background-color: #555555;
+    color: white;
+    border-radius: 15px; /* Round the corners */
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.ToDo-btn-primary:hover {
+    background-color: darkgray;
+    color: white;
+}
+
+.ToDo-btn-primary-blue {
+    background-color: #008CBA;
+    color: white;
+    border-radius: 15px; /* Round the corners */
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.ToDo-btn-primary-blue:hover {
+    background-color: #00b9f5;
+    color: white;
+}
+
+.ToDo-btn-primary-red {
+    background-color: #f44336;
+    color: white;
+    border-radius: 15px; /* Round the corners */
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.ToDo-btn-primary-red:hover {
+    background-color: #ff4d40;
+    color: white;
+}
+
+.ToDo-btn-secondary-blue {
+    background-color: #008CBA;
+    color: white;
+    border-radius: 7px; /* Round the corners */
+    padding: 16px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.ToDo-btn-secondary-blue:hover {
+    background-color: #00b9f5;
+    color: white;
+}
+
+.ToDo-btn-secondary-red {
+    background-color: #f44336;
+    color: white;
+    border-radius: 7px; /* Round the corners */
+    padding: 16px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.ToDo-btn-secondary-red:hover {
+    background-color: #ff4d40;
+    color: white;
+}

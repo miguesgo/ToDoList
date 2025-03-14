@@ -1,0 +1,32 @@
+﻿@page
+@model ToDoList.Pages.TaskPages.EditModel
+
+<form method="post">
+    <input hidden asp-for="ToDoTask.Id" />
+    <div class="border p-3 mt-4 ToDo-form">
+        <div class="row pb-2">
+            <h2>Update task</h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="ToDoTask.Name"></label>
+            <input asp-for="@Model.ToDoTask.Name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="ToDoTask.Description"></label>
+            <input asp-for="@Model.ToDoTask.Description" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="ToDoTask.DueDate"></label>
+            <input asp-for="@Model.ToDoTask.DueDate" type="date" class="form-control" />
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" asp-for="@Model.ToDoTask.IsCompleted" id="isCompletedSwitch" />
+            <label class="form-check-label" for="isCompletedSwitch">Is already completed?</label>
+        </div>
+        <br />
+        <button type="submit" class="ToDo-btn-primary" style="width:150px;">Update</button>
+        <a asp-page="Index" class="ToDo-btn-primary-blue" style="width:150px;">Back</a>
+    </div>
+</form>
