@@ -16,18 +16,26 @@
                 <i class="bi bi-plus-lg"></i> &nbsp; Create a new Task
             </a>
         </div>
-        <div class="text-end">
-            <h6>Sort by
-                <select id="sort" onchange="sortTasks()">
-                    <option value="name">Name</option>
-                    <option value="date">Due Date</option>
-                    <option value="status">Status</option>
+
+        <div>
+            <br /><br />
+        </div>
+
+        <div class="text-start">
+            <h6 class="ToDo-dropdown-text">
+                Sort by
+                <select id="sort" onchange="sortTasks()" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <option value="name" class="text-start">Name</option>
+                    <option value="date" class="text-start">Due Date</option>
+                    <option value="status" class="text-start">Status</option>
                 </select>
+                &nbsp;
+                <a class="btn btn-success" onclick="downloadFile()">
+                    <i class="bi bi-plus-lg"></i> &nbsp; Plain Text
+                </a>
             </h6>
         </div>
     </div>
-
-    <br /><br />
 
     <div id="taskList">
         @await Html.PartialAsync("_SortByPartial", Model.ToDoTasks)
@@ -35,6 +43,7 @@
 </div>
 
 <script>
+
     function sortTasks() {
         var sortValue = document.getElementById("sort").value;
 
@@ -42,5 +51,21 @@
             console.log("Response received:", data); // ✅ Should be the TaskPages Index
             $("#taskList").html(data);
         });
+    }
+
+    function downloadFile() {
+        var sortValue = document.getElementById("sort").value;
+        fetch("/TaskPages/Index?handler=DownloadTasks&SortOrder=" + sortValue, { method: 'GET' })
+            .then(response => response.blob()) // Convert response to binary file data
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const _a = document.createElement("a");
+                _a.href = url;
+                _a.download = "TasksList.txt"; // Set the file name
+                document.body.appendChild(_a);
+                _a.click();
+                window.URL.revokeObjectURL(url); // Cleanup
+            })
+            .catch(error => console.error("Error downloading file:", error));
     }
 </script>
