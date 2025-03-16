@@ -1,14 +1,14 @@
 
 # 📝 Task Manager – Razor Pages
 
- A simple yet powerful Task Manager built with ASP.NET Core Razor Pages, designed to help users efficiently manage their tasks. Inspired by the Notion Notes UI, this web application allows users to create, update, delete, and organize tasks with an intuitive and minimalistic interface.
+ A simple Task Manager built with ASP.NET Core Razor Pages, as a practice project. This web application allows users to create, update, delete, and organize tasks with an intuitive and minimalistic interface.
 
 ## Features
 - Task Management – Create, update, and delete tasks easily.
 - Sorting Options – Sort tasks by title, due date, or completion status.
 - SQL Server Integration – Persistent task storage using a relational database.
 - Data Export – Download tasks as TXT or PDF files.
-- Dynamic UI – Responsive design with Bootstrap, resembling Notion’s notes section.
+- Dynamic UI – Responsive design with Bootstrap.
 - Real-time Sorting – Sort tasks dynamically without refreshing the page (AJAX).
 - Form Validations – Ensures proper task input before submission.
 
