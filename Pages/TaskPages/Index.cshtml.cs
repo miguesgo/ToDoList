@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
@@ -32,7 +34,6 @@ namespace ToDoList.Pages.TaskPages
             {
                 return Partial("_SortByPartial", ToDoTasks);
             }
-
             return Page();
         }
 
@@ -49,6 +50,24 @@ namespace ToDoList.Pages.TaskPages
             var bytes = Encoding.UTF8.GetBytes(stringBuilder.ToString());
             var fileName = "To-Do-List.txt";
             return File(bytes, "text/plain", fileName);
+        }
+
+        public async Task<IActionResult> OnGetDownloadPdfAsync() //Saving in PDF
+        {
+            using var stream = new MemoryStream();
+            var document = new Document();
+            var writer = PdfWriter.GetInstance(document, stream);
+            document.Open();
+            ToDoTasks = await SortedList();
+            document.Add(new Paragraph("List of tasks"));
+            document.Add(new Paragraph("======================="));
+            foreach (var t in ToDoTasks)
+            {
+                document.Add(new Paragraph($"{t.Id}. [{(t.IsCompleted ? "✔" : " ")}] {t.Name}: {t.Description} {t.DueDate}"));
+            }
+            document.Close();
+            var content = stream.ToArray();
+            return File(content, "application/pdf", "To-Do-List.pdf");
         }
 
         public async Task<List<ToDoTask>> SortedList()

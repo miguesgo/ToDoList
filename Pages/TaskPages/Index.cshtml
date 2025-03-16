@@ -31,7 +31,10 @@
                 </select>
                 &nbsp;
                 <a class="btn btn-success" onclick="downloadFile()">
-                    <i class="bi bi-plus-lg"></i> &nbsp; Plain Text
+                    <i class="bi bi-card-text"></i> &nbsp; Plain Text
+                </a>
+                <a class="btn btn-danger" onclick="downloadPdf()">
+                    <i class="bi bi-filetype-pdf"></i> &nbsp; PDF
                 </a>
             </h6>
         </div>
@@ -61,11 +64,27 @@
                 const url = window.URL.createObjectURL(blob);
                 const _a = document.createElement("a");
                 _a.href = url;
-                _a.download = "TasksList.txt"; // Set the file name
+                _a.download = "To-Do-List.txt"; // Set the file name
                 document.body.appendChild(_a);
                 _a.click();
                 window.URL.revokeObjectURL(url); // Cleanup
             })
             .catch(error => console.error("Error downloading file:", error));
+    }
+
+    function downloadPdf() {
+        var sortValue = document.getElementById("sort").value;
+        fetch("/TaskPages/Index?handler=DownloadPdf&SortOrder=" + sortValue, { method: 'GET' })
+            .then(response => response.blob()) // Convert response to binary file data
+            .then(blob => {
+                let url = window.URL.createObjectURL(blob);
+                let a = document.createElement("a");
+                a.href = url;
+                a.download = "To-Do-List.pdf";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            })
+            .catch(error => console.error("Error downloading PDF file:", error));
     }
 </script>
